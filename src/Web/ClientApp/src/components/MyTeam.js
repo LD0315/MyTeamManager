@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Form, FormGroup, Label, Input, Button, Alert, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap'; 
 import '../custom.css'; 
 
 const MyTeam = () => {
@@ -80,26 +79,26 @@ const MyTeam = () => {
   return (
     <div>
       <h2>My Team</h2>
-      <Form onSubmit={handleSubmit}>
-        <FormGroup>
-          <Label for="firstName">First Name *</Label>
-          <Input type="text" id="firstName" value={firstName} onChange={(e) => setFirstName(e.target.value)} required />
-        </FormGroup>
-        <FormGroup>
-          <Label for="lastName">Last Name *</Label>
-          <Input type="text" id="lastName" value={lastName} onChange={(e) => setLastName(e.target.value)} required />
-        </FormGroup>
-        <FormGroup>
-          <Label for="email">Email Address *</Label>
-          <Input type="email" id="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
-        </FormGroup>
-        <FormGroup>
-          <Label for="mobile">Mobile Number</Label>
-          <Input type="tel" id="mobile" value={mobile} onChange={(e) => setMobile(e.target.value)} />
-        </FormGroup>
-        {error && <Alert color="danger">{error}</Alert>}
-        <Button type="submit" color="primary">{editIndex !== -1 ? 'Save' : 'Add User'}</Button>
-      </Form>
+      <form onSubmit={handleSubmit}>
+        <div className="form-group">
+          <label htmlFor="firstName">First Name *</label>
+          <input type="text" className="form-control" id="firstName" value={firstName} onChange={(e) => setFirstName(e.target.value)} required />
+        </div>
+        <div className="form-group">
+          <label htmlFor="lastName">Last Name *</label>
+          <input type="text" className="form-control" id="lastName" value={lastName} onChange={(e) => setLastName(e.target.value)} required />
+        </div>
+        <div className="form-group">
+          <label htmlFor="email">Email Address *</label>
+          <input type="email" className="form-control" id="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+        </div>
+        <div className="form-group">
+          <label htmlFor="mobile">Mobile Number</label>
+          <input type="tel" className="form-control" id="mobile" value={mobile} onChange={(e) => setMobile(e.target.value)} />
+        </div>
+        {error && <div className="alert alert-danger">{error}</div>}
+        <button type="submit" className="btn btn-primary">{editIndex !== -1 ? 'Save' : 'Add User'}</button>
+      </form>
 
       <div className="add-space"></div>
       <h3>Team Members</h3>
@@ -119,22 +118,33 @@ const MyTeam = () => {
               <td>{user.lastName}</td>
               <td>{user.email}</td>
               <td>
-                <Button color="warning" onClick={() => handleEdit(index)}>Edit</Button>
-                <Button color="danger" onClick={() => handleDelete(index)}>Delete</Button>
+                <button className="btn btn-warning" onClick={() => handleEdit(index)}>Edit</button>
+                <button className="btn btn-danger" onClick={() => handleDelete(index)}>Delete</button>
               </td>
             </tr>
           ))}
         </tbody>
       </table>
 
-      <Modal isOpen={modalOpen} toggle={toggleModal}>
-        <ModalHeader toggle={toggleModal}>Confirm Deletion</ModalHeader>
-        <ModalBody>Are you sure you want to delete this user?</ModalBody>
-        <ModalFooter>
-          <Button color="danger" onClick={toggleModal}>Cancel</Button>
-          <Button color="success" onClick={handleDelete}>Confirm</Button>
-        </ModalFooter>
-      </Modal>
+      <div className="modal" style={{ display: modalOpen ? 'block' : 'none' }}>
+        <div className="modal-dialog">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h5 className="modal-title">Confirm Deletion</h5>
+              <button type="button" className="close" onClick={toggleModal}>
+                <span>&times;</span>
+              </button>
+            </div>
+            <div className="modal-body">
+              Are you sure you want to delete this user?
+            </div>
+            <div className="modal-footer">
+              <button type="button" className="btn btn-secondary" onClick={toggleModal}>Cancel</button>
+              <button type="button" className="btn btn-success" onClick={handleDelete}>Confirm</button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
