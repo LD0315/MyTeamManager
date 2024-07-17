@@ -1,5 +1,3 @@
-using System;
-
 namespace Sample.Test.Domain.Entities;
 {
     public class User
