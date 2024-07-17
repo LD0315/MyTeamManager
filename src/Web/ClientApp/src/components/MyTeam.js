@@ -97,7 +97,7 @@ const MyTeam = () => {
           <input type="tel" className="form-control" id="mobile" value={mobile} onChange={(e) => setMobile(e.target.value)} />
         </div>
         {error && <div className="alert alert-danger">{error}</div>}
-        <button type="submit" className="btn btn-primary">{editIndex !== -1 ? 'Save' : 'Add User'}</button>
+        <button type="submit" className="btn btn-warning">{editIndex !== -1 ? 'Save' : 'Add User'}</button>
       </form>
 
       <div className="add-space"></div>
